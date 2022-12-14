@@ -1,5 +1,6 @@
 import { gql } from "@apollo/client"
 import { client } from "graphql/apollo-client"
+import { GetBooksDocument } from "graphql/codegen/graphql"
 import { GetStaticProps } from "next"
 
 export default function Home({ books }: { books: any }) {
@@ -16,14 +17,7 @@ export default function Home({ books }: { books: any }) {
 
 export const getStaticProps: GetStaticProps = async () => {
   const { data } = await client.query({
-    query: gql`
-      query Books {
-        books {
-          id
-          name
-        }
-      }
-    `,
+    query: GetBooksDocument,
   })
 
   return {
